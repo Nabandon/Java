@@ -17,9 +17,7 @@ public class Test48{
             }
                 int tmp=arr1[left];
                 arr1[left]=arr1[right];
-                arr1[right]=tmp;
-           
-            
+                arr1[right]=tmp;  
         }
     }
 }
