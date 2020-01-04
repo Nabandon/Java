@@ -1,7 +1,4 @@
 package JAVA0102;
-
-
-
 class P{
     private String name="zhangsan";
     private int age=10;
