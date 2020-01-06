@@ -1,4 +1,7 @@
 package JAVA0102;
+
+import org.omg.CORBA.DATA_CONVERSION;
+
 class Node{
     public  int data;
     public Node next=null;
@@ -41,5 +44,30 @@ public class Test15 {
         }
         return size;
     }
-
+    public boolean addIndex(int index,int data){
+        int size=getSize();
+        if(index<0||index>size){
+            return false;
+        }
+        if(index==0){
+            addFirst(data);
+            return true;
+        }
+        if(index==size){
+            addLast(data);
+            return true;
+        }
+       Node node=new Node(data);
+        Node prev=getPos(index-1);
+        node.next=prev.next;
+        prev.next=node;
+        return true;
+    }
+    private Node getPos(int index){
+        Node cur=head;
+        for(int i=0;i<index;i++){
+            cur=cur.next;
+        }
+        return cur;
+    }
 }
