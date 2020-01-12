@@ -5,10 +5,10 @@ package JAVA0102;
     public String name;
     public String sex;
         public void eat(){
-        System.out.println("吃饭!");
+        System.out.println("eat!");
     }
     public void sleep(){
-        System.out.println("睡觉!");
+        System.out.println("sleep");
     }
      public static void main(String[] args) {
          System.out.println(1);
