@@ -1,7 +1,11 @@
 package Java0112;
 
 public class FindShrtedSubarr {
-    public int findUnsortedSubarray(int[] nums) {
+    public static void main(String[] args) {
+        int[] nums={2,6,4,8,10,9,15};
+        System.out.println(findUnsortedSubarray(nums));
+    }
+    public static int findUnsortedSubarray(int[] nums) {
             int left=0;
             int right=0;
         for (int a = nums.length - 1; a > 0; a--) {
@@ -21,6 +25,6 @@ public class FindShrtedSubarr {
             }
         }
         if (right - left < 0) return 0;
-        return right - right;
+        return right - left;
     }
 }
