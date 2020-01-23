@@ -8,17 +8,14 @@ public class ListNode {
     }
 }
 class Solution{
-    public ListNode removeElements(ListNode head, int val) {
-        ListNode node=new ListNode(-1);
-        node.next=head;
-        ListNode cur=node;
-        while(cur.next!=null){
-           if(cur.next.val==val){
-               cur.next=cur.next.next;
-           }else {
-               cur=cur.next;
-           }
-        }
-        return node.next;
+    public ListNode reverseList(ListNode head) {
+       ListNode pre=null;
+       ListNode cur=head;
+       while(cur!=null){
+           ListNode nxetTmp=cur.next;
+           cur.next=pre;
+           pre=cur;
+           cur=nxetTmp;
+       }return pre;
     }
 }
