@@ -1,5 +1,4 @@
 package JAVA0102;
-
 public class Test2 {
     public int age;
     public String name;
