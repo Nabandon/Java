@@ -8,7 +8,7 @@ public class ListCycle {
         ListNode slow=head;
         ListNode fast=head.next;
         while(slow!=fast){
-            if(fast.next==null){
+            if(fast==null||fast.next==null){
                 return false;
             }
             slow=slow.next;
