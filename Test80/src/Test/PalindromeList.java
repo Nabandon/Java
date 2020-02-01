@@ -12,5 +12,6 @@ public class PalindromeList {
             b= b==null?headA:b.next;
         }
         return a;
+
     }
 }
