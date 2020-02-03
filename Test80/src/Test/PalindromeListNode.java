@@ -25,6 +25,7 @@ public class PalindromeListNode {
            nHead=cur;
            cur=temp;
        }
+
        return nHead;
     }
 }
