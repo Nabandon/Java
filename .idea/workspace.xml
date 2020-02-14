@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e74a901b-b7b1-490f-b05e-0c16338b6dad" name="Default Changelist" comment="">
+    <list default="true" id="3cf0ff90-409e-489b-aa8b-3722949d1477" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/description.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/project-template.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Javase.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -9,64 +15,48 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1WFUAKm9YMPy8bDZJTWaB9ZMsOa" />
+  <component name="ProjectId" id="1Xnkb55svwQMZ8IMwmr7RtDHPPX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Test60" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="Javase" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e74a901b-b7b1-490f-b05e-0c16338b6dad" name="Default Changelist" comment="" />
-      <created>1578744696824</created>
+      <changelist id="3cf0ff90-409e-489b-aa8b-3722949d1477" name="Default Changelist" comment="" />
+      <created>1581689313769</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1578744696824</updated>
-      <workItem from="1578744709583" duration="75000" />
-      <workItem from="1579958578528" duration="497000" />
-      <workItem from="1579959153978" duration="593000" />
+      <updated>1581689313769</updated>
     </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="441" y="64" key="FileChooserDialogImpl" timestamp="1578744793321">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="441" y="64" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1578744793321" />
-    <state x="311" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1579959254271">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="311" y="165" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1579959254271" />
-    <state x="0" y="0" key="new project wizard" timestamp="1579959748075">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="0" y="0" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1579959748075" />
   </component>
 </project>
