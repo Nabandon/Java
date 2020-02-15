@@ -1,6 +1,7 @@
 package Test100;
 
 public class Cycle {
+
     public boolean hasCycle(ListNode head){
         ListNode slow=head;
         ListNode fast=head;
