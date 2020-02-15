@@ -1,6 +1,7 @@
 package Test100;
 
 public class Intersection {
+
     public ListNode getIntersection(ListNode A,ListNode B){
         ListNode a=A;
         ListNode b=B;
