@@ -1,5 +1,6 @@
 package Test100;
 public class DeleteDuplication {
+
     public ListNode deletDup(ListNode pHead) {
         if (pHead == null || pHead.next == null) {
             return pHead;
