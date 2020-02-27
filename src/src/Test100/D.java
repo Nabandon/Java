@@ -22,7 +22,17 @@ public class D {
         return pre;
     }
     private ListNode f(ListNode head,int k){
-
+            ListNode pre=head;
+        ListNode cur=head;
+        for(int i=0;i<k;i++){
+            if(cur==null)  return null;
+            cur=cur.next;
+        }
+        while (cur!=null){
+            pre=pre.next;
+            cur=cur.next;
+        }
+        return pre;
     }
     private ListNode g(ListNode l1,ListNode l2){
         if(l1==null) return l2;
