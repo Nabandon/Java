@@ -19,7 +19,7 @@ public class Solution21 {
         if(dividend>0) dividend=-dividend;
         if (divisor>0) divisor=-divisor;
         int res=0;
-        for(long i=divisor;i>=dividend;i+=divisor){
+        for (long i=divisor; i>=dividend; i+=divisor){
                 res++;
         }
         return res*sing;
