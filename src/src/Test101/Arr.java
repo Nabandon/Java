@@ -12,12 +12,9 @@ public class Arr {
                 }
                 imax = Math.max(imax*nums[i], nums[i]);
                 imin = Math.min(imin*nums[i], nums[i]);
-
                 max = Math.max(max, imax);
             }
             return max;
         }
     }
-
-
 }
