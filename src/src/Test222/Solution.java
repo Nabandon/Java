@@ -9,16 +9,20 @@ class Solution {
 
     }
 
-    public int[] reversePrint(ListNode head) {
-        int size=0;
-        for(ListNode c=head;c!=null;c=c.next){
-            size++;
+
+        public String defangIPaddr(String address) {
+            StringBuilder s = new StringBuilder();
+            for (int i = 0; i < address.length(); i++) {
+                if (address.charAt(i) == '.') {
+
+                    s.append("[.]");
+                } else {
+                    s.append(address.charAt(i));
+                }
+            }
+            return s.toString();
         }
-        int[] arr=new int[size];
-        for(int i=size-1;i>=0;i--){
-            arr[i]=head.val;
-            head=head.next;
-        }
-        return arr;
     }
-}
+
+
+
