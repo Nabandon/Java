@@ -6,25 +6,26 @@ import java.util.Scanner;
 
 class Solution {
     public static void main(String[] args) {
-        int[] arr={3,2,3};
-        System.out.println(majorityElement(arr));
+        int[] arr={1, 3, 2, 0, 3};
+        System.out.println(minimumValueAfterDispel(arr));
     }
-    public static int majorityElement(int[] nums) {
-        if(nums.length==1) return nums[0];
-        int fre=nums.length/2;
-        int size=0;
-        for(int i=0;i<nums.length-1;i++){
-            int count=1;
-            for(int j=i+1;j<nums.length;j++) {
-                if (nums[i] == nums[j]) {
-                    count++;
-                    if (count > fre) {
-                        size = nums[i];
-                    }
-                }
-            }
+    public static long minimumValueAfterDispel (int[] nums) {
+        // write code here
+        int sum=0;
+        Arrays.sort(nums);
+        int n=nums[nums.length/2];
+        for(int i=nums.length/2;i<nums.length;i++){
+            nums[i]-=n;
         }
-       return size;
+        Arrays.sort(nums);
+        int m=nums[nums.length/2];
+        for(int i=nums.length/2;i<nums.length;i++){
+            nums[i]-=m;
+        }
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
+        }
+        return sum;
     }
 }
 
