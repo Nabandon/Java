@@ -6,19 +6,25 @@ import java.util.Scanner;
 
 class Solution {
     public static void main(String[] args) {
-        gcd(21,31);
+        int[] arr={3,2,3};
+        System.out.println(majorityElement(arr));
     }
-    public static  void gcd(int n,int m) {
-        int min=Math.min(m,n);
-        int max=Math.max(m,n);
-        int k=max%min;
-        while (k>0){
-               max=min;
-               min=k;
-               k=max%min;
+    public static int majorityElement(int[] nums) {
+        if(nums.length==1) return nums[0];
+        int fre=nums.length/2;
+        int size=0;
+        for(int i=0;i<nums.length-1;i++){
+            int count=1;
+            for(int j=i+1;j<nums.length;j++) {
+                if (nums[i] == nums[j]) {
+                    count++;
+                    if (count > fre) {
+                        size = nums[i];
+                    }
+                }
+            }
         }
-        System.out.println("最大公约数:"+min);
-        System.out.println("最小公倍数:"+m*n/min);
+       return size;
     }
 }
 
