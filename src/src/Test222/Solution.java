@@ -6,18 +6,19 @@ import java.util.Scanner;
 
 class Solution {
     public static void main(String[] args) {
-
+        gcd(21,31);
     }
-    public int numWays(int n) {
-        if(n==0) return 1;
-        if(n==1||n==2) return n;
-        int a = 1, b = 2, sum=0;
-        for(int i = 3; i <=n; i++){
-            sum = (a + b) % 1000000007;
-            a = b;
-            b = sum;
+    public static  void gcd(int n,int m) {
+        int min=Math.min(m,n);
+        int max=Math.max(m,n);
+        int k=max%min;
+        while (k>0){
+               max=min;
+               min=k;
+               k=max%min;
         }
-        return sum;
+        System.out.println("最大公约数:"+min);
+        System.out.println("最小公倍数:"+m*n/min);
     }
 }
 
