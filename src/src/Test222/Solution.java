@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 class Solution {
     public static void main(String[] args) {
-        int[] arr={1, 3, 2, 0, 3};
-        System.out.println(minimumValueAfterDispel(arr));
+
+        
     }
     public static long minimumValueAfterDispel (int[] nums) {
-        // write code here
+
         int sum=0;
         Arrays.sort(nums);
         int n=nums[nums.length/2];
@@ -26,8 +26,8 @@ class Solution {
             sum+=nums[i];
         }
         return sum;
-    }
+   }
 }
-
+//
 
 
