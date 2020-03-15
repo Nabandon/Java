@@ -24,4 +24,10 @@ public class StringB {
 
         return str.toString();
     }
+    public StringBuilder s(){
+        String str="ww";
+        StringBuilder str1=new StringBuilder();
+        return str1.append(str);
+    }
+
 }
