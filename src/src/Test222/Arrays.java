@@ -1,22 +1,21 @@
 package Test222;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
-public class Arrays1 {
-    public int[] intersect(int[] nums1, int[] nums2) {
-       Arrays.sort(nums1);
-       Arrays.sort(nums2);
-       int i=0,j=0,k=0;
-       while(i<nums1.length && j<nums2.length ){
-           if(nums1[i]<nums2[j]){
-               i++;
-           }else if(nums1[i]>nums2[j]){
-               j++;
-           }else {
-              nums1[k++]=nums1[i++];
-           }
-       }
-       return Arrays.copyOfRange(nums1,0,k);
+class Arrays{
+    public int countLR (int[] a, int[] b) {
+        int count=0;
+        for(int i=0;i<a.length;i++){
+            if(a[i]==2*b[i]){
+                count++;
+            }
+        }
+        for(int i=0;i<a.length-1;i++){
+            int res=a[i];
+            for(int j=i+1;j<b.length;j++){
+                res+=a[j];
+                if(res==b[i]+b[j]){
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }
