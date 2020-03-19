@@ -5,11 +5,16 @@ public class Find2D {
         if(matrix.length<=0||matrix[0].length<=0){
             return false;
         }
-        for(int i=0;i<matrix.length;i++){
-            for(int j=0;j<matrix[0].length;j++){
-                if(matrix[i][j]==target){
-                    return true;
-                }
+        int l1=0,r1=matrix.length-1;
+        int r2=matrix[0].length-1;
+        while(l1<=r1&&r2>=0){
+            int num=matrix[l1][r2];
+            if(num==target){
+                return true;
+            }else if(num>target){
+                r2--;
+            }else{
+                l1++;
             }
         }
         return false;
