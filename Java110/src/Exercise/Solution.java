@@ -3,24 +3,26 @@ package Exercise;
 import java.util.Arrays;
 
 public class Solution {
-    public int lastStoneWeight(int[] stones) {
-        if(stones.length==2){
-            return Math.abs(stones[0]-stones[1]);
+    public String compressString(String S) {
+        int[] arr=new int[26];
+        for(int i=0;i<S.length();i++){
+
+            arr[ S.charAt(i)-'a']++;
         }
-        if(stones.length==1){
-            return stones[0];
+        StringBuilder sb=new StringBuilder();
+
+        for(int j=0;j<26;j++){
+            int sum=0;
+            if(arr[j]!=0){
+                sum+=arr[j];
+
+                sb.append((char)j+'a').append(j);
+            }
         }
-
-        Arrays.sort(stones);
-        if(stones[stones.length-3]==0){
-            return stones[stones.length-1]-stones[stones.length-2];
+        if(sb.toString().length()==S.length()){
+            return S;
+        }else{
+            return sb.toString();
         }
-
-
-        stones[stones.length-1]=stones[ stones.length-1]-stones[stones.length-2];
-        stones[stones.length-2]=0;
-
-        return lastStoneWeight(stones);
     }
-
 }
