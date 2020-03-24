@@ -4,18 +4,18 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Solution {
-    public static void main(String[] args){
-        Scanner scanner=new Scanner(System.in);
-        while(scanner.hasNext()) {
-            String str = scanner.nextLine();
-            StringBuilder strb = new StringBuilder();
-            for (int i = 0; i < str.length(); i++) {
-                char tem = str.charAt(i);
-                if (!strb.toString().contains(tem + "")) {
-                    strb.append(tem);
-                }
+    public boolean Find(int target, int [][] array) {
+        int h=0,l=array[0].length-1;
+        while(h<array.length && l>=0){
+            if(target<array[h][l]){
+                l--;
             }
-            System.out.println(strb.toString());
+            else if(target>array[h][l]){
+                h++;
+            }else{
+                return true;
+            }
         }
+        return false;
     }
 }
