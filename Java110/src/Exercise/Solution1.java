@@ -1,16 +1,16 @@
 package Exercise;
 import java.util.Scanner;
 public class Solution1 {
-    public String replaceSpace(StringBuffer str) {
-        StringBuilder strb=new StringBuilder();
-        for(int i=0;i<str.length();i++){
-            if(str.charAt(i)==' '){
-                strb.append("%20");
-            }else{
-                strb.append(str.charAt(i));
-            }
+    public int Fibonacci(int n) {
+        if(n==0) return 0;
+        if(n==1) return 1;
+        int q=0,h=1;
+        for(int i=1;i<n;i++){
+            int res=q+h;
+            q=h;
+            h=res;
         }
-        return strb.toString();
+        return h;
     }
-    }
+}
 
