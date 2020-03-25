@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Solution {
-    public int JumpFloorII(int n) {
+    public int RectCover(int n) {
         if(n<=0) return 0;
-        if(n==1||n==2) return n;
+        if(n==1||n==2||n==3) return n;
         else{
-            return JumpFloorII(n-1)*2;
+            return RectCover(n-1)+RectCover(n-2);
         }
     }
 }
