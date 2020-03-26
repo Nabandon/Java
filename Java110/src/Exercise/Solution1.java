@@ -1,18 +1,57 @@
 package Exercise;
 import java.util.Scanner;
 public class Solution1 {
-    public void reOrderArray(int [] array) {
-        if(array.length<=1) return;
-        int len=array.length;
-        for(int i=0;i<len;i++){
-            for(int j=len-1;j>i;j--){
-                if(array[j]%2!=0&&array[j-1]%2==0){
-                    int temp=array[j];
-                    array[j]=array[j-1];
-                    array[j-1]=temp;
+    public int numRookCaptures(char[][] board) {
+        int i=0,j=0;
+        outer:
+        for( i=0;i<8;i++){
+            for( j=0;j<8;j++){
+                if(board[i][j]=='R'){
+                    break outer;
                 }
             }
         }
+        int count=0;
+        //往东
+        for(int k=i;k<8;k++){
+            if(board[k][j]=='p'){
+                count++;
+                break;
+            }
+            if(board[k][j]=='B'){
+                break;
+            }
+        }
+        //往西
+        for(int k=i;k>=0;k--){
+            if(board[k][j]=='p'){
+                count++;
+                break;
+            }
+            if(board[k][j]=='B'){
+                break;
+            }
+        }
+        //往南
+        for(int k=j;k<8;k++){
+            if(board[i][k]=='p'){
+                count++;
+                break;
+            }
+            if(board[i][k]=='B'){
+                break;
+            }
+        }
+        for(int k=j;k>=0;k--){
+            if(board[i][k]=='p'){
+                count++;
+                break;
+            }
+            if(board[i][k]=='B'){
+                break;
+            }
+        }
+        return count;
     }
 }
 
