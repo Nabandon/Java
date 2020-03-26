@@ -7,21 +7,29 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Solution {
-    public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> res=new ArrayList<>();
-        if(numRows<=0) return res;
-        List<Integer> internal=new ArrayList<>();
-        internal.add(1);
-        res.add(internal);
-        for(int i=1;i<numRows;i++){
-            List<Integer> list=new ArrayList<>();
-            list.add(1);
-            for(int j=1;j<i;j++){
-                list.add(res.get(i-1).get(j-1)+res.get(i-1).get(j));
-            }
-            list.add(1);
-            res.add(list);
+    public static void main(String[] args) {
+        int n = 2;
+        int[][] a = {{1, 2}};
+        System.out.println(findJudge(n, a));
+
+    }
+
+    public static int findJudge(int N, int[][] trust) {
+        if (N == 1) return 1;
+        if (trust.length <= 0) return -1;
+
+        int[] n = new int[N + 1];
+        for (int i = 0; i < trust.length; i++) {
+            n[trust[i][1]]++;
+            n[trust[i][0]]--;
         }
-        return res;
+        for (int j = 1; j < N + 1; j++) {
+            if (n[j] == N - 1) {
+
+                    return j;
+
+            }
+        }
+        return -1;
     }
 }
