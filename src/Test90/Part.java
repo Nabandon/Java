@@ -1,31 +1,19 @@
 package Test90;
 
-public class Part {
-    public ListNode partition(ListNode pHead, int x) {
+import java.util.Stack;
 
-        if(pHead==null||pHead.next==null){
-            return pHead;
-        }
-        ListNode cur=pHead;
-        ListNode qhead=new ListNode(0);
-        ListNode hhead=new ListNode(0);
-        ListNode q=qhead;
-        ListNode h=hhead;
-        while(cur!=null){
-            if(cur.val<x){
-                q.next=new ListNode(cur.val);
-                q=q.next;
-            }else{
-                h.next=new ListNode(cur.val);
-                h=h.next;
+public class Part {
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+        if(pushed.length<=2) return true;
+        int j=0;
+        Stack<Integer> stack=new Stack<>();
+        for(int x:pushed){
+            stack.push(x);
+            while(!stack.isEmpty() && j<popped.length && stack.peek()==popped[j]){
+                stack.pop();
+                j++;
             }
-            cur=cur.next;
         }
-        cur=qhead;
-        while(cur.next!=null){
-            cur=cur.next;
-        }
-        cur.next=hhead.next;
-        return qhead.next;
+        return j==popped.length;
     }
 }
