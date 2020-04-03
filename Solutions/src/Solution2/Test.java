@@ -2,30 +2,25 @@ package Solution2;
 
 
 import java.util.Arrays;
+import java.util.Stack;
 
 public class Test {
-    public TreeNode reConstructBinaryTree(int [] pre, int [] in) {
+        Stack<Integer> stack1 = new Stack<Integer>();
+        Stack<Integer> stack2 = new Stack<Integer>();
 
+        public void push(int node) {
+            stack1.push(node);
+        }
 
-        if(pre.length == 0){
-            return null;
-        }
-        int rootVal = pre[0];
-        if(pre.length == 1){
-            return new TreeNode(rootVal);
-        }
-          TreeNode root = new TreeNode(rootVal);
-        int rootIndex = 0;
-        for(int i=0;i<in.length;i++){
-            if(rootVal == in[i]){
-                rootIndex = i;
-                break;
+        public int pop() {
+            while(!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+
             }
+            int p=stack2.pop();
+            while(!stack2.isEmpty()){
+                stack1.push(stack2.pop());
+            }
+            return p;
         }
-        root.left = reConstructBinaryTree(Arrays.copyOfRange(pre,1,rootIndex+1),
-                                                Arrays.copyOfRange(in,0,rootIndex));
-        root.right = reConstructBinaryTree(Arrays.copyOfRange(pre,rootIndex+1,pre.length),
-                                                Arrays.copyOfRange(in,rootIndex+1,in.length));
-        return root;
-    }
 }
