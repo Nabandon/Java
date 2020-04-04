@@ -15,6 +15,28 @@ class RecentCounter {
         val=x;
     }
 }
+//输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表;
+    public TreeNode Convert(TreeNode pRootOfTree) {
+        if(pRootOfTree==null) return null;
+        if(pRootOfTree.left==null && pRootOfTree.right==null){
+            return pRootOfTree;
+        }
+        TreeNode left=Convert(pRootOfTree.left);
+        TreeNode leftTail=left;
+        while(leftTail!=null&&leftTail.right!=null) {
+            leftTail=leftTail.right;
+        }
+        if(left!=null){
+            leftTail.right=pRootOfTree;
+            pRootOfTree.left=leftTail;
+        }
+        TreeNode right=Convert(pRootOfTree.right);
+        if(right!=null){
+            right.left=pRootOfTree;
+            pRootOfTree.right=right;
+        }
+        return left==null?pRootOfTree:left;
+    }
     //最近公共祖先;
     private TreeNode lca=null;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
