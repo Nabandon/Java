@@ -1,6 +1,8 @@
 package Solution1;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 class RecentCounter {
     class TreeNode{
@@ -12,6 +14,34 @@ class RecentCounter {
         val=x;
     }
 }
+//给定一个二叉树，确定它是否是一个完全二叉树。
+    public boolean isCompleteTree(TreeNode root) {
+        if(root==null) return true;
+        boolean isStep=false;
+        Queue<TreeNode> que=new LinkedList<>();
+        que.offer(root);
+        while(!que.isEmpty()){
+            TreeNode cur=que.poll();
+            if(!isStep){
+                if(cur.left!=null && cur.right!=null){
+                    que.offer(cur.left);
+                    que.offer(cur.right);
+                }else if(cur.left==null && cur.right!=null){
+                    return false;
+                }else if(cur.left!=null && cur.right==null){
+                    isStep=true;
+                    que.offer(cur.left);
+                }else if(cur.left==null && cur.right==null){
+                    isStep=true;
+                }
+            }else{
+                if(cur.left!=null || cur.right!=null){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 //采用前序遍历的方式，将一个二叉树转换成一个由括号和整数组成的字符串。
 //空节点用一对空括号 "()" 表示。而且要省略所有不影响字符串与原二叉树之间的一对一映射关系的空括号对。
     public String tree2str(TreeNode t) {
