@@ -1,45 +1,76 @@
 package Solution1;
 
+import Solution2.TreeNode;
+
 import java.util.*;
+
+import static java.lang.System.arraycopy;
 
 
 public class Exe {
-    public ArrayList<Integer> asylum(int[][] ope) {
-        // write code here
-        Queue<Integer> dog=new LinkedList<>();
-        Queue<Integer> cat=new LinkedList<>();
-        Queue<Integer> all=new LinkedList<>();
-        ArrayList<Integer> animal=new ArrayList<>();
-        for(int i=0;i<ope.length;i++){
-            if(ope[i][0]==1){
-                if(ope[i][1]<0){
-                    cat.offer(ope[i][1]);
-                }else if(ope[i][1]>0){
-                    dog.offer(ope[i][1]);
-                }
-                all.offer(ope[i][1]);
+    //先序遍历;
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> res=new ArrayList<>();
+        if(root==null) return  res;
+        Stack<TreeNode> stack=new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            TreeNode cur=stack.pop();
+            res.add(cur.val);
+            if(cur.right!=null){
+                stack.push(cur.right);
             }
-            if(ope[i][0]==2){
-                if(ope[i][1]==0 && !all.isEmpty()){
-                    int temp=all.poll();
-                    animal.add(temp);
-                    if(temp<0){
-                        cat.poll();
-                    }else if(temp>0){
-                        dog.poll();
-                    }
-
-                }else if(ope[i][1]==1 && !dog.isEmpty()){
-                    Integer tem=dog.poll();
-                    animal.add(tem);
-                    all.remove(tem);
-                }else if(ope[i][1]==-1 && !cat.isEmpty()){
-                    Integer temc=cat.poll();
-                    animal.add(temc);
-                    all.remove(temc);
-                }
+            if(cur.left!=null) {
+                stack.push(cur.left);
             }
         }
-        return animal;
+        return  res;
+    }
+    //中序遍历;
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res=new ArrayList<>();
+        if(root==null) return  res;
+        Stack<TreeNode> stack=new Stack<>();
+        TreeNode pre=root;
+        while(true){
+            while (pre!=null){
+                stack.push(pre);
+                pre=pre.left;
+            }
+            if(stack.isEmpty()){
+                break;
+            }
+            TreeNode cur=stack.pop();
+            res.add(cur.val);
+            pre=cur.right;
+        }
+        return res;
+    }
+    //后序遍历;
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> res=new ArrayList<>();
+        if(root==null) return res;
+        Stack<TreeNode> stack=new Stack<>();
+        TreeNode pre=root;
+        TreeNode top=null;
+        while(true){
+            while (pre!=null){
+                stack.push(pre);
+                pre=pre.left;
+            }
+            if(stack.isEmpty()){
+                break;
+            }
+            TreeNode cur=stack.peek();
+            if(cur.right==null||top==cur.right) {
+                res.add(cur.val);
+                stack.pop();
+                top=cur;
+
+            }else{
+                pre=cur.right;
+            }
+        }
+        return res;
     }
 }
