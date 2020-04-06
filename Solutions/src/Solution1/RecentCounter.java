@@ -14,6 +14,24 @@ class RecentCounter {
         val=x;
     }
 }
+//树的子结构;
+    public boolean HasSubtree(TreeNode s,TreeNode t) {
+        if(s==null||t==null) return false;
+        boolean ret=false;
+        if(s.val==t.val){
+            ret=sub(s,t);
+        }
+        return ret||HasSubtree(s.left,t)||HasSubtree(s.right,t);
+    }
+    private boolean sub(TreeNode s,TreeNode t){
+        if(s==null&&t==null) return true;
+        if(s!=null&&t==null) return true;
+        if(s==null&&t!=null) return false;
+        if(s.val!=t.val){
+            return false;
+        }
+        return sub(s.left,t.left)&&sub(s.right,t.right);
+    }
 //给定一个二叉树，确定它是否是一个完全二叉树。
     public boolean isCompleteTree(TreeNode root) {
         if(root==null) return true;
@@ -136,7 +154,6 @@ class RecentCounter {
 //        if(p==null||q==null) return false;
 //        if(p.val!=q.val) return false;
 //        return isSameTree(p.left,q.left)&&isSameTree(p.right,q.right);
-//
 //    }
 //    //子树;
 //    public boolean isSubtree(TreeNode s, TreeNode t) {
