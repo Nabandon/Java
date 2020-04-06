@@ -3,6 +3,7 @@ package Solution1;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 class RecentCounter {
     class TreeNode{
@@ -14,6 +15,22 @@ class RecentCounter {
         val=x;
     }
 }
+//镜像变换;
+    public void Mirror(TreeNode root) {
+        if(root==null) return;
+        Stack<TreeNode> stack=new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            TreeNode node=stack.pop();
+            if(node.left!=null||node.right!=null){
+                TreeNode temp=node.left;
+                node.left=node.right;
+                node.right=temp;
+            }
+            if(node.left!=null) stack.push(node.left);
+            if(node.right!=null) stack.push(node.right);
+        }
+    }
 //树的子结构;
     public boolean HasSubtree(TreeNode s,TreeNode t) {
         if(s==null||t==null) return false;
