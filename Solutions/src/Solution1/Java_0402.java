@@ -1,38 +1,34 @@
 package Solution1;
 
+import Solution2.TreeNode;
+
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 public class Java_0402 {
 
-    Stack<Integer> s1=new Stack<>();
-    Stack<Integer> s2=new Stack<>();
-
-    public void push(int node) {
-        s1.push(node);
+    public boolean VerifySquenceOfBST(int [] sequence) {
+        int len=sequence.length;
+        if(len==0) return false;
+        if(len==1) return true;
+        return helper(sequence,0,len-1);
     }
-
-    public void pop() {
-        s1.pop();
-    }
-
-    public int top() {
-        return s1.peek();
-    }
-
-    public int min() {
-        int min=Integer.MAX_VALUE;
-        while(!s1.isEmpty()){
-            int tem=s1.pop();
-            min=Math.min(min,tem);
-            s2.push(tem);
+    private boolean helper(int[] arr,int start,int end){
+        if(end<=start) return true;
+        int i=start;
+        for(;i<end;i++){
+            if(arr[i]>arr[end]){
+                break;
+            }
         }
-        while(!s2.isEmpty()){
-            s1.push(s2.pop());
+        for(int j=i;j<end;j++){
+            if(arr[j]<arr[end]){
+                return false;
+            }
         }
-        return min;
+        return helper(arr,0,i-1)&&helper(arr,i,end-1);
     }
 
 }
