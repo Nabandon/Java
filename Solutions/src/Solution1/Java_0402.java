@@ -2,32 +2,37 @@ package Solution1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 
 public class Java_0402 {
-   private class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
+
+    Stack<Integer> s1=new Stack<>();
+    Stack<Integer> s2=new Stack<>();
+
+    public void push(int node) {
+        s1.push(node);
     }
-    List<List<Integer>> res=new ArrayList<>();
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        if(root==null) return res;
-        res=heaper(root,0);
-        return res;
+
+    public void pop() {
+        s1.pop();
     }
-    private List<List<Integer>> heaper(TreeNode root, int level){
-        if(level==res.size()) {
-            res.add(new ArrayList<>());
-        }
-        res.get(level).add(root.val);
-        if(root.left!=null){
-            heaper(root.left,level+1);
-        }
-        if(root.right!=null){
-            heaper(root.right,level+1);
-        }
-        return res;
+
+    public int top() {
+        return s1.peek();
     }
+
+    public int min() {
+        int min=Integer.MAX_VALUE;
+        while(!s1.isEmpty()){
+            int tem=s1.pop();
+            min=Math.min(min,tem);
+            s2.push(tem);
+        }
+        while(!s2.isEmpty()){
+            s1.push(s2.pop());
+        }
+        return min;
+    }
+
 }
