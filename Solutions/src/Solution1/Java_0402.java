@@ -2,28 +2,24 @@ package Solution1;
 
 import Solution2.TreeNode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 
 public class Java_0402 {
 
-    public int MoreThanHalfNum_Solution(int [] array) {
-        int len=array.length;
-        if(len==0) return 0;
-        if(len==1) return array[0];
-        int n=len/2;
-        Arrays.sort(array);
-        int x=array[n];
-        int count=0;
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res=new ArrayList<>();
+        res.add(new ArrayList<>());
+        int len=nums.length;
         for(int i=0;i<len;i++){
-            if(array[i]==x){
-                count++;
+            int size=res.size();
+            for(int j=0;j<size;j++){
+                List<Integer> temp=new ArrayList<>(res.get(j));
+                temp.add(nums[i]);
+                res.add(temp);
             }
         }
-        return count>n?x:0;
+        return res;
     }
 
 }
