@@ -4,9 +4,99 @@ import javax.management.MBeanRegistration;
 
 public class Sort {
     private void swap(int i,int j){
-        int temp=i;
-        i=j;
-        j=temp;
+        int t=i;
+            i=j;
+            j=t;
+    }
+    //归并排序;
+    public void mergeSort(int[] arr){ //非递归;
+        for(int gap=1;gap<arr.length;gap*=2){
+            for(int i=0;i<arr.length;i+=2*gap){
+                int beg=i;
+                int mid=i+gap;
+                int end=i+2*gap;
+                if(mid>arr.length){
+                    mid=arr.length;
+                }
+                if(end>arr.length){
+                    end=arr.length;
+                }
+                merge(arr,beg,mid,end);
+            }
+        }
+    }
+    public void megerSort1(int[] arr){//递归;
+        mergeSortIntr(arr,0,arr.length);
+    }
+    private void mergeSortIntr(int[] arr,int beg,int end){
+        if(end-beg<=1){
+            return;
+        }
+        int mid=beg+(end-beg)/2;
+        mergeSortIntr(arr,beg,mid);
+        mergeSortIntr(arr,mid,end);
+
+        merge(arr,beg,mid,end);
+    }
+    private  void merge(int[]arr,int beg,int mid,int end ){
+       int[] input=new int[end-beg];
+       int index=0;
+       int cur1=beg;
+       int cur2=mid;
+       while(cur1<mid && cur2<end){
+           if(arr[cur1]<=arr[cur2]){
+               input[index++]=arr[cur1++];
+           }else{
+               input[index++]=arr[cur2++];
+           }
+           while(cur1<mid){
+               input[index++]=arr[cur1++];
+           }
+           while(cur2<end){
+               input[index++]=arr[cur2++];
+           }
+           for(int i=0;i<end-beg;i++){
+               arr[beg+i]=input[i];
+           }
+       }
+    }
+    //快速排序;
+    public void quickSort(int[] arr){
+        //用一个辅助方法完成递归;
+        quickHelp(arr,0,arr.length-1);
+    }
+    private void quickHelp(int[] arr,int left,int right){
+        if(left>=right){//当区间元素个数为一或0时,不需要排序;
+            return ;
+        }
+        //对区间[left,right]进行整理,调整基准值的位置到index,再进行递归;
+        int index=helper(arr,left,right);
+
+        quickHelp(arr,left,index-1);
+        quickHelp(arr,index+1,right);
+    }
+    private int helper(int[] arr,int left,int right){
+        int start=left;
+        int end=right;
+        int base=arr[right];//取最右侧元素为基准值;
+        while(start<end){
+            //从左往右找比基准大的元素;
+            while(start<end && arr[start]<=base){
+                start++;
+            }
+            //从右往左找比基准值小的元素;
+            while(start<end && arr[end]>=base){
+                end--;
+            }
+            //当上面循环结束后,star指向比基准大的元素,end指向比基准值小的元素;或者二者重合;
+            //交换两个数;
+            swap(arr[start],arr[end]);
+        }
+        //循环结束后,star和end一定重合;交换其和基准值的位置;
+        swap(arr[start],arr[right]);
+        //返回star位置,完成一次调整
+        // 此时,star左侧的元素小于等于star指向的元素小,star右侧元素一定大于等于star指向的元素;
+        return start;
     }
     //插入排序;
     public void inertionSort(int[] arr){
