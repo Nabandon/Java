@@ -9,10 +9,11 @@ import java.util.Scanner;
 
 public class Java_0402 {
     public static void main(String[] args) {
-
+        
     }
-    private int baoS(String s,String b){
-        HashSet<Character> set=new HashSet<>();
+    //宝石与石头;
+    private int numJewelsInStones(String s,String b){
+        Set<Character> set=new HashSet<>();
         for(char c:s.toCharArray()){
             set.add(c);
         }
@@ -36,7 +37,6 @@ public class Java_0402 {
             }else{
                 return  mind;
             }
-
         }
         return -1;
     }
