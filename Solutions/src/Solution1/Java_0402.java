@@ -8,8 +8,25 @@ import java.util.Scanner;
 
 
 public class Java_0402 {
+    //坏掉的键;
     public static void main(String[] args) {
-        
+        Scanner scanner=new Scanner(System.in);
+        while(scanner.hasNext()){
+            String expected=scanner.next();
+            String actual=scanner.next();
+            expected= expected.toUpperCase();
+            actual=  actual.toUpperCase();
+            HashSet<Character> res=new HashSet<>();
+            for(char c:actual.toCharArray()){
+                res.add(c);
+            }
+            for(char c:expected.toCharArray()){
+                if(!res.contains(c)){
+                    System.out.print(c);
+                    res.add(c);
+                }
+            }
+        }
     }
     //宝石与石头;
     private int numJewelsInStones(String s,String b){
