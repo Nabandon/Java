@@ -9,8 +9,29 @@ import java.util.Scanner;
 
 public class Java_0402 {
     public static void main(String[] args) {
-
+        String s="qwer";
+        String t=s;
+        System.out.println(s+" " +t);
     }
+    //同构字符串;
+    public boolean isIsomorphic(String s, String t) {
+        int n=s.length();
+        Map<Character,Character> map=new HashMap<>();
+        for(int i=0;i<n;i++){
+            if(!map.containsKey(s.charAt(i))){
+                if(map.containsValue(t.charAt(i))){
+                    return false;
+                }
+                map.put(s.charAt(i),t.charAt(i));
+            }else{
+                if(map.get(s.charAt(i))!=t.charAt(i)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public List<String> topKFrequent(String[] words,int k){
         Map<String,Integer> map=new HashMap<>();
         for(String s:words){
@@ -20,7 +41,7 @@ public class Java_0402 {
         Collections.sort(list,(o1,o2)->{
             int count1=map.get(o1);
             int count2=map.get(o2);
-            if(count1==count2){
+            if(count1==(count2)){
                 return o1.compareTo(o2);
             }
             return count2-count1;
