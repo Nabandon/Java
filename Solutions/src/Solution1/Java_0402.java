@@ -8,8 +8,27 @@ import java.util.Scanner;
 
 
 public class Java_0402 {
+    public String PrintMinNumber(int [] numbers) {
+        List<Integer> list=new ArrayList<>();
+        for(int n:numbers){
+            list.add(n);
+        }
+        Collections.sort(list,(o1,o2)->{
+            String s1=o1+""+o2;
+            String s2=o2+""+o1;
+            return s1.compareTo(s2);
+        });
+        String str="";
+        for(int x:list){
+            str+=x;
+        }
+        return str;
+    }
     public static void main(String[] args) {
         String s="qwer";
+        int a=0,b=10;
+        s+=a;
+        int m=Math.abs(a-b);
         String t=s;
         System.out.println(s+" " +t);
     }
