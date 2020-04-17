@@ -8,6 +8,23 @@ import java.util.Scanner;
 
 
 public class Java_0402 {
+    public int GetUglyNumber_Solution(int index) {
+        if(index<=0) return 0;
+        int i=1;
+        int[] res=new int[index];
+        res[0]=1;
+        int i2=0;
+        int i3=0;
+        int i5=0;
+        while(i<index){
+            int tem=Math.min(Math.min(res[i2]*2,res[i3]*3),res[i5]*5);
+            if(tem==res[i2]*2) i2++;
+            if(tem==res[i3]*3) i3++;
+            if(tem==res[i5]*5) i5++;
+            res[i++]=tem;
+        }
+        return res[index-1];
+    }
     public String PrintMinNumber(int [] numbers) {
         List<Integer> list=new ArrayList<>();
         for(int n:numbers){
