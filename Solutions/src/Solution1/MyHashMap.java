@@ -1,7 +1,9 @@
 package Solution1;
 
+import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.util.HashSet;
 
+//
 public class MyHashMap {
     class Node {
         int key;
@@ -13,7 +15,7 @@ public class MyHashMap {
                 this.value=value;
         }
     }
-    private Node[] arr=new Node[101];
+    private Node[] arr=new Node[1001];
     private  int size=0;
     private final double LENGTH=0.75;
     private int HashFunc(int key){
@@ -56,6 +58,96 @@ public class MyHashMap {
                 return  cur.value;
             }
         }
-        return null;
+        return -1;
+    }
+    public void remove(int key) {
+        int index=HashFunc(key);
+        Node list=arr[index];
+        if(list!=null){
+            if(list.key==key){
+                arr[index]=list.next;
+            }else {
+                for(;list!=null&&list.next!=null;list=list.next){
+                    if(list.next.key==key){
+                        list.next=list.next.next;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+class MyHashSet {
+class Node{
+    int key;
+    Node next=null;
+    public Node(int key){
+        this.key=key;
+    }
+}
+    /** Initialize your data structure here. */
+    public MyHashSet() {
+
+    }
+    private final double L=0.75;
+ private  Node[] arr=new Node[1001];
+   private int size=0;
+    private int findKey(int key){
+        return key%arr.length;
+    }
+    public void add(int key) {
+        int index=findKey(key);
+        Node cur=arr[index];
+        for (Node pre=cur;pre!=null;pre=pre.next){
+            if(pre.key==key){
+                return;
+            }
+        }
+        Node newCur=new Node(key);
+        newCur.next=cur;
+        arr[index]=newCur;
+        size++;
+        if(size/arr.length>L){
+            resize();
+        }
+    }
+    private void resize(){
+        Node[] newArr=new Node[arr.length*2];
+        for(int i=0;i<arr.length;i++){
+            for(Node pre=arr[i];pre!=null;pre=pre.next){
+                int index=pre.key/newArr.length;
+                Node newNode=new Node(pre.key);
+                newNode.next=newArr[index];
+                newArr[index]=newNode;
+            }
+        }
+        arr=newArr;
+    }
+
+    public void remove(int key) {
+        int index=findKey(key);
+        Node cur=arr[index];
+        if(cur.key==key){
+            arr[index]=cur.next;
+        }else {
+            for (Node pre=cur;pre.next!=null;pre=pre.next){
+                if(pre.next.key==key){
+                    pre.next=pre.next.next;
+                }
+            }
+        }
+    }
+
+    /** Returns true if this set contains the specified element */
+    public boolean contains(int key) {
+            int index=findKey(key);
+            Node cur=arr[index];
+            for(;cur!=null;cur=cur.next){
+                if(cur.key==key){
+                    return true;
+                }
+            }
+            return false;
     }
 }
