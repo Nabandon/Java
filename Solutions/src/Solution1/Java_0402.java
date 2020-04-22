@@ -1,13 +1,28 @@
 package Solution1;
 
 import Solution2.TreeNode;
-
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.Scanner;
 
 
 public class Java_0402 {
+    public String largestNumber(int[] nums) {
+        if(nums.length==0) return null;
+       String[] str=new String[nums.length];
+       for(int i=0;i<nums.length;i++){
+           str[i]=String.valueOf(nums[i]);
+       }
+       Arrays.sort(str,(o1,o2)->(o2+o1).compareTo(o1+o2));
+       StringBuilder sb=new StringBuilder();
+       for(String s:str){
+           sb.append(s);
+       }
+       String res=sb.toString();
+       if(res.charAt(0)=='0') return "0";
+       return res;
+    }
+
     public int GetUglyNumber_Solution(int index) {
         if(index<=0) return 0;
         int i=1;
@@ -43,11 +58,8 @@ public class Java_0402 {
     }
     public static void main(String[] args) {
         String s="qwer";
-        int a=0,b=10;
-        s+=a;
-        int m=Math.abs(a-b);
-        String t=s;
-        System.out.println(s+" " +t);
+
+        System.out.println(s.substring(0,1));
     }
     //同构字符串;
     public boolean isIsomorphic(String s, String t) {
