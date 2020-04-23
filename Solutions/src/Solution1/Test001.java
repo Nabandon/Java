@@ -5,21 +5,17 @@ import Solution2.TreeNode;
 import java.util.*;
 
 public class Test001 {
-    public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> list=new ArrayList<>();
-        if(root==null) return list;
-        Queue<TreeNode> queue=new LinkedList<>();
-        queue.offer(root);
-        while(!queue.isEmpty()){
-            int count=queue.size();
-            while (count>0){
-                TreeNode tem=queue.poll();
-                if(tem.left!=null) queue.offer(tem.left);
-                if(tem.right!=null) queue.offer(tem.right);
-                if(count==1) list.add(tem.val);
-                count--;
+    public int waysToChange(int n) {
+        if(n==0||n==1) return n;
+        int[] fen={25,10,5,1};
+        int mod=1000000007;
+        int[] res=new int[n+1];
+        res[0]=1;
+        for(int i:fen){
+            for(int j=i;j<=n;j++){
+                res[j]=(res[j]+res[j-i])%mod;
             }
         }
-        return list;
+        return res[n];
     }
 }
