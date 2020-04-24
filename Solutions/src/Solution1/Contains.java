@@ -1,35 +1,34 @@
 package Solution1;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Contains {
-    public boolean containsNearbyDuplicate(int[] nums, int k) {
-//        for(int i=0;i<nums.length-1;i++){
-//            for(int j=i+1;j<nums.length;j++){
-//                if(nums[i]==nums[j] && Math.abs(i-j)<=k){
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-        if(k<=0) return false;
-        Set<Integer> set=new HashSet<>();
-        for(int i=0;i<nums.length;i++){
-            if(set.contains(nums[i])) return true;
-            set.add(nums[i]);
-            if(set.size()>k){
-                set.remove(nums[i-k]);
-            }
+
+    public int[] solve (int n, int m, int[] a, int[] x) {
+        // write code here
+        int[] res=new int[m];
+        Arrays.sort(a);
+        for(int i=0;i<m;i++){
+            res[i]=dichotomy(a,x[i]);
         }
-        return false;
+        return res;
     }
-    public boolean containsDuplicate(int[] nums) {
-        Set<Integer> set=new HashSet<>();
-        for(int x:nums){
-            if(set.contains(x)) return true;
-            set.add(x);
+    private int dichotomy(int[] arr,int xm){
+        int len=arr.length;
+        int left=0;
+        int right=len-1;
+        while(left<right){
+            int mind=left+(right-left)/2;
+            if(arr[mind]==xm) return 0;
+            else if(arr[mind]<xm) left=mind+1;
+            else if(arr[mind]>xm) right=mind-1;
         }
-        return false;
+        if(right==-1) return Math.abs(arr[0]-xm);
+        if(left==len) return Math.abs(arr[len-1]-xm);
+        int lmin=Math.abs(arr[left]-xm);
+        int rmin=Math.abs(arr[right]-xm);
+        return Math.min(lmin,rmin);
     }
 }
