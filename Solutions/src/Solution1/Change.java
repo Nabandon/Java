@@ -1,28 +1,34 @@
 package Solution1;
 
 public class Change {
-    public int search(int[] nums, int target) {
+    public int GetNumberOfK(int [] array , int k) {
+        int count=0;
         int left=0;
-        int right=nums.length-1;
+        int right=array.length-1;
         while(left<=right){
             int mid=left+(right-left)/2;
-            if(nums[mid]==target){
-                return mid;
-            }else if(nums[mid]<nums[right]){
-                if(nums[mid]<target && target<=nums[right]){
-                    left=mid+1;
-                }else {
-                    right=mid-1;
+            if(array[mid]==k){
+                for(int m=mid;m>=left;m--){
+                    if(array[m]==k){
+                        count++;
+                    }else{
+                        break;
+                    }
                 }
+                for(int m=mid+1;m<=right;m++){
+                    if(array[m]==k){
+                        count++;
+                    }else {
+                        break;
+                    }
+                }
+                return count;
+            }else if(array[mid]<k){
+                left=mid+1;
             }else {
-                if(nums[mid]>target && nums[left]<=target){
-                    right=mid-1;
-                }else{
-                    left=mid+1;
-                }
+                right=mid-1;
             }
         }
-        return -1;
+        return count;
     }
-
 }
