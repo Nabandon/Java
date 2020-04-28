@@ -1,39 +1,22 @@
 package Solution1;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 public class ReversrPairs {
-    public static void main(String[] args) {
-        int[] a={1,3,2,3,1};
-        System.out.println(reversePairs(a));
-    }
-    public static int reversePairs(int[] nums) {
-            return mergeSort(nums,0,nums.length);
-    }
-    private static int mergeSort(int[] arr,int start,int end){
-        if(end-start<=1){
-            return 0;
+    public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<array.length;i++){
+            map.put(array[i],map.getOrDefault(array[i],0)+1);
         }
-        int mid=start+(end-start)/2;
-        int count=mergeSort(arr,start,mid)+mergeSort(arr,mid,end);
-        int[] input=new int[end-start];
-        int left=start,right=end,half=mid,index=0;
-        while (left<mid && half<right){
-            if(arr[left]<=arr[half]){
-                input[index++]=arr[left++];
-            }else{
-                input[index++]=arr[half++];
-                count+=mid-left;
+        int[] n=new int[2];
+        int index=0;
+        for(int i:array){
+            if(map.get(i)==1){
+                n[index++]=i;
             }
         }
-        while(left<mid){
-            input[index++]=arr[left++];
-
-        }
-        while(half<right){
-            input[index++]=arr[half++];
-        }
-        for(int i=0;i<end-start;i++){
-            arr[start+i]=input[i];
-        }
-        return count;
+        num1[0]=n[0];
+        num2[0]=n[1];
     }
 }
