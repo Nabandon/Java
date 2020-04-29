@@ -1,34 +1,22 @@
 package Solution1;
 
+import java.util.Arrays;
+
 public class Change {
-    public int GetNumberOfK(int [] array , int k) {
-        int count=0;
-        int left=0;
-        int right=array.length-1;
-        while(left<=right){
-            int mid=left+(right-left)/2;
-            if(array[mid]==k){
-                for(int m=mid;m>=left;m--){
-                    if(array[m]==k){
-                        count++;
-                    }else{
-                        break;
-                    }
-                }
-                for(int m=mid+1;m<=right;m++){
-                    if(array[m]==k){
-                        count++;
-                    }else {
-                        break;
-                    }
-                }
-                return count;
-            }else if(array[mid]<k){
-                left=mid+1;
-            }else {
-                right=mid-1;
-            }
+    public static void main(String[] args) {
+         int[] arr={25,15,30,10,50,3,5,60};
+    }
+    public String LeftRotateString(String str,int n) {
+        if(n<=0 || n>=str.length()){
+            return str;
         }
-        return count;
+        StringBuilder s1=new StringBuilder();
+        int i=0;
+        for(;i<n;i++){
+            s1.append(str.charAt(i));
+        }
+        StringBuilder s2=new StringBuilder(str.substring(i,str.length()));
+        s2.append(s1);
+        return  s2.toString();
     }
 }
