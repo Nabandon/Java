@@ -3,9 +3,19 @@ package Solution1;
 import java.util.Arrays;
 
 public class Continous {
-    public int Sum_Solution(int n) {
-        int res=n;
-        boolean b=(n>0) && ((res+=Sum_Solution(n-1))>0);
-        return res;
+    public int[] multiply(int[] A) {
+        int[] b=new int[A.length];
+        for(int i=0;i<b.length;i++){
+            int res=1;
+            for(int j=0;j<b.length;j++){
+                if(j==i){
+                    continue;
+                }else{
+                    res*=A[j];
+                }
+            }
+            b[i]=res;
+        }
+        return b;
     }
 }
