@@ -5,36 +5,43 @@ package Solution1;
 import java.lang.reflect.Array;
 import java.util.*;
 
-class TreeLinkNode {
+class TreeNode {
     int val;
-    TreeLinkNode left = null;
-    TreeLinkNode right = null;
-    TreeLinkNode next = null;
+    TreeNode left = null;
+    TreeNode right = null;
+    TreeNode next = null;
 
-    TreeLinkNode(int val) {
+    TreeNode(int val) {
         this.val = val;
     }
 }
 public class Match {
-    public TreeLinkNode GetNext(TreeLinkNode pNode) {
-        if(pNode==null ) {
-            return null;
+   public boolean isSymmetrical(TreeNode pRoot)
+    {
+        if(pRoot==null){
+            return true;
         }
-        TreeLinkNode t=pNode;
-        if(t.right!=null){
-            t=t.right;
-            while (t.left!=null){
-                t=t.left;
-            }
-            return t;
+        if(pRoot.left==null && pRoot.right==null){
+            return true;
         }
-        while(pNode.next!=null){
-            if(pNode.next.left==pNode){
-                return pNode.next;
-            }
-            pNode=pNode.next;
+        if(pRoot.left==null || pRoot.right==null){
+            return false;
         }
-        return null;
+        if(pRoot.left.val==pRoot.right.val){
+            return help(pRoot.left,pRoot.right);
+        }
+        return false;
     }
-
+        private boolean help(TreeNode l,TreeNode r){
+       if(l==null && r==null) {
+           return true;
+       }
+       if(l==null || r==null){
+           return false;
+       }
+        if(l.val!=r.val){
+        return false;
+        }
+        return help(l.right,r.left) && help(l.left,r.right);
+   }
 }
