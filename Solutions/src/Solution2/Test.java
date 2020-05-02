@@ -4,23 +4,30 @@ package Solution2;
 import java.util.Arrays;
 import java.util.Stack;
 
+
 public class Test {
-        Stack<Integer> stack1 = new Stack<Integer>();
-        Stack<Integer> stack2 = new Stack<Integer>();
-
-        public void push(int node) {
-            stack1.push(node);
+    TreeNode KthNode(TreeNode pRoot, int k)
+    {
+        if(pRoot==null || k<=0){
+            return null ;
         }
+        Stack<TreeNode> stack=new Stack<>();
 
-        public int pop() {
-            while(!stack1.isEmpty()){
-                stack2.push(stack1.pop());
-
+        TreeNode node=pRoot;
+        int count=1;
+        while (node!=null || !stack.isEmpty()) {
+            while(node!=null){
+                stack.push(node);
+                node=node.left;
             }
-            int p=stack2.pop();
-            while(!stack2.isEmpty()){
-                stack1.push(stack2.pop());
+            TreeNode newNode=stack.pop();
+            if(count==k){
+                return newNode;
             }
-            return p;
+            count++;
+            node=newNode.right;
         }
+        return null;
+    }
+    
 }
