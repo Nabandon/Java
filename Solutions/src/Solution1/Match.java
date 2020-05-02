@@ -1,31 +1,40 @@
 package Solution1;
 
+
+
 import java.lang.reflect.Array;
 import java.util.*;
 
+class TreeLinkNode {
+    int val;
+    TreeLinkNode left = null;
+    TreeLinkNode right = null;
+    TreeLinkNode next = null;
+
+    TreeLinkNode(int val) {
+        this.val = val;
+    }
+}
 public class Match {
-    public static void main(String[] args) {
-        char[] str = {'a', 'a', 'a'};
-        char[] pattern = {'a', '.', 'a'};
-    }
-    int[] res=new int[128];
-    Queue<Character> que=new LinkedList<>();
-    public void Insert(char ch)
-    {
-        res[ch]++;
-        que.offer(ch);
-    }
-    //return the first appearence once char in current stringstream
-    public char FirstAppearingOnce()
-    {
-        while(!que.isEmpty()){
-            char c=que.peek();
-            if(res[c]==1){
-                return c;
-            }else {
-                que.poll();
-            }
+    public TreeLinkNode GetNext(TreeLinkNode pNode) {
+        if(pNode==null ) {
+            return null;
         }
-        return '#';
+        TreeLinkNode t=pNode;
+        if(t.right!=null){
+            t=t.right;
+            while (t.left!=null){
+                t=t.left;
+            }
+            return t;
+        }
+        while(pNode.next!=null){
+            if(pNode.next.left==pNode){
+                return pNode.next;
+            }
+            pNode=pNode.next;
+        }
+        return null;
     }
+
 }
