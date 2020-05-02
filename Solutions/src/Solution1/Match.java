@@ -21,70 +21,33 @@ class TreeNode {
     }
 }
 public class Match {
-    public ArrayList<ArrayList<Integer>> Print1(TreeNode pRoot) {
-        ArrayList<ArrayList<Integer>> res=new ArrayList<>();
-        if(pRoot==null) {
-            return res;
+    String Serialize(TreeNode root) {
+        StringBuilder sb=new StringBuilder();
+        if(root==null){
+            sb.append("#"+"!");
+            return sb.toString();
         }
-        Stack<TreeNode> s1= new Stack<>();
-        s1.push(pRoot);
-        Stack<TreeNode> s2=new Stack<>();
-        while(!s1.isEmpty() || !s2.isEmpty()){
-            if(!s1.isEmpty()){
-                ArrayList<Integer> list=new ArrayList<>();
-                while(!s1.isEmpty()){
-                    TreeNode t=s1.pop();
-                    if(t.left!=null){
-                        s2.push(t.left);
-                    }
-                    if(t.right!=null){
-                        s2.push(t.right);
-                    }
-                    list.add(t.val);
-                }
-                res.add(list);
-            }else {
-                ArrayList<Integer> list=new ArrayList<>();
-                while(!s2.isEmpty()){
-                    TreeNode t=s2.pop();
-                    if(t.right!=null){
-                        s2.push(t.right);
-                    }
-                    if(t.left!=null){
-                        s2.push(t.left);
-                    }
-                    list.add(t.val);
-                }
-                res.add(list);
-            }
-        }
-        return res;
+        sb.append(root.val+"!");
+        sb.append(Serialize(root.left));
+        sb.append(Serialize(root.right));
+        return sb.toString();
     }
-    //
-    ArrayList<ArrayList<Integer> > Print(TreeNode pRoot) {
-        ArrayList<ArrayList<Integer>> res=new ArrayList<>();
-        if(pRoot==null) {
-            return res;
+    int index=-1;
+    TreeNode Deserialize(String str) {
+        String[] strs=str.split("!");
+        return helper(strs,strs.length);
+    }
+    private TreeNode helper(String[] strs,int len){
+        index++;
+        if(index>=len){
+            return null;
         }
-        Queue<TreeNode> queue=new LinkedList<>();
-        int count=0;
-        queue.offer(pRoot);
-        while(!queue.isEmpty()){
-            count=queue.size();
-            ArrayList<Integer> list=new ArrayList<>();
-            while(count>0){
-                TreeNode t=queue.poll();
-                list.add(t.val);
-                if(t.left!=null){
-                    queue.offer(t.left);
-                }
-                if(t.right!=null){
-                    queue.offer(t.right);
-                }
-                count--;
-            }
-            res.add(list);
+        TreeNode root=null;
+        if(!strs[index].equals("#")) {
+            root = new TreeNode(Integer.parseInt(strs[index]));
+            root.left = helper(strs, len);
+            root.right = helper(strs, len);
         }
-        return res;
+        return root;
     }
 }
