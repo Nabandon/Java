@@ -7,30 +7,16 @@ import java.util.Stack;
 
 
 public class Test {
-    ArrayList<Integer> list=new ArrayList<>();
-    public ArrayList<Integer> maxInWindows(int [] num, int size)
-    {
-        if(num.length==0 || size<=0 || size>num.length){
-            return list;
+    public int cutRope(int target) {
+        if(target<=3){
+            return target-1;
         }
-        int i=0;
-        if(size==num.length){
-            max(num,i,num.length);
-            return list;
+        if(target%3==0){
+            return (int)Math.pow(3,target/3);
+        }else if(target%3==1){
+            return 4*(int)Math.pow(3,(target-5)/3);
         }
-
-        for( i=0 ;i<=num.length-size ;i++){
-            max(num,i,size+i);
-        }
-
-        return list;
-    }
-    private void max(int[] arr,int star,int end){
-        int Max=arr[star];
-        for(int i=star;i<end-1;i++){
-            Max=Math.max(Max,arr[i+1]);
-        }
-        list.add(Max);
+        return 2*(int)Math.pow(3,target/3);
     }
     
 }
