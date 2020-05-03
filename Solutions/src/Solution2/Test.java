@@ -1,33 +1,36 @@
 package Solution2;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
 
 public class Test {
-    TreeNode KthNode(TreeNode pRoot, int k)
+    ArrayList<Integer> list=new ArrayList<>();
+    public ArrayList<Integer> maxInWindows(int [] num, int size)
     {
-        if(pRoot==null || k<=0){
-            return null ;
+        if(num.length==0 || size<=0 || size>num.length){
+            return list;
         }
-        Stack<TreeNode> stack=new Stack<>();
+        int i=0;
+        if(size==num.length){
+            max(num,i,num.length);
+            return list;
+        }
 
-        TreeNode node=pRoot;
-        int count=1;
-        while (node!=null || !stack.isEmpty()) {
-            while(node!=null){
-                stack.push(node);
-                node=node.left;
-            }
-            TreeNode newNode=stack.pop();
-            if(count==k){
-                return newNode;
-            }
-            count++;
-            node=newNode.right;
+        for( i=0 ;i<=num.length-size ;i++){
+            max(num,i,size+i);
         }
-        return null;
+
+        return list;
+    }
+    private void max(int[] arr,int star,int end){
+        int Max=arr[star];
+        for(int i=star;i<end-1;i++){
+            Max=Math.max(Max,arr[i+1]);
+        }
+        list.add(Max);
     }
     
 }
