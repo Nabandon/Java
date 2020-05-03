@@ -5,10 +5,7 @@ package Solution1;
 import javafx.scene.control.skin.SliderSkin;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 class TreeNode {
     int val;
@@ -21,33 +18,24 @@ class TreeNode {
     }
 }
 public class Match {
-    String Serialize(TreeNode root) {
-        StringBuilder sb=new StringBuilder();
-        if(root==null){
-            sb.append("#"+"!");
-            return sb.toString();
-        }
-        sb.append(root.val+"!");
-        sb.append(Serialize(root.left));
-        sb.append(Serialize(root.right));
-        return sb.toString();
+
+
+    ArrayList<Integer> list = new ArrayList<>();
+
+    public void Insert(Integer num) {
+        list.add(num);
     }
-    int index=-1;
-    TreeNode Deserialize(String str) {
-        String[] strs=str.split("!");
-        return helper(strs,strs.length);
-    }
-    private TreeNode helper(String[] strs,int len){
-        index++;
-        if(index>=len){
-            return null;
+
+    public Double GetMedian() {
+        int s = list.size();
+        if (s==1){
+            return  (double)list.get(0);
         }
-        TreeNode root=null;
-        if(!strs[index].equals("#")) {
-            root = new TreeNode(Integer.parseInt(strs[index]));
-            root.left = helper(strs, len);
-            root.right = helper(strs, len);
+        Collections.sort(list, (o1, o2) -> o1 - o2);
+
+        if (s % 2 != 0) {
+            return (double) list.get((s / 2));
         }
-        return root;
+        return (double) (list.get((s / 2) - 1) + list.get(s / 2))/2;
     }
 }
