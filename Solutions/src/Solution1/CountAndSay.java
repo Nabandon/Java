@@ -5,45 +5,33 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class TreePrinter {
-    public int[][] printTree(TreeNode root) {
-        // write code here
-        ArrayList<ArrayList<Integer>> res=lists(root);
-        int[][] input=new int[res.size()][];
-        for(int i=0;i<res.size();i++){
-            ArrayList<Integer> tem=res.get(i);
-            int[] in=new int[tem.size()];
-            for(int j=0;j<tem.size();j++){
-                in[j]=tem.get(j);
+public class Main {
+    public static void main(String[] args) {
+        Scanner sca = new Scanner(System.in);
+        while (sca.hasNext()) {
+            int n = sca.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                int h = sca.nextInt();
+                int m = sca.nextInt();
+                arr[i] = h * 60 + m;
             }
-            input[i] =in;
-        }
-        return input;
-    }
-    private ArrayList<ArrayList<Integer>> lists(TreeNode root){
-        ArrayList<ArrayList<Integer>> list=new ArrayList<>();
-        if(root==null) {
-            return list;
-        }
-        Queue<TreeNode> q=new LinkedList<>();
-        q.offer(root);
-        while (!q.isEmpty()){
-            int count=q.size();
-            ArrayList<Integer> in=new ArrayList<>();
-            while(count>0) {
-                TreeNode t=q.poll();
-                in.add(t.val);
-                if (t.left != null) {
-                    q.offer(t.left);
+            int time = sca.nextInt();
+            int schoolH = sca.nextInt();
+            int schoolM = sca.nextInt();
+            int school = schoolH * 60 + schoolM;
+            int min = 0;
+            for (int j = 0; j < n; j++) {
+                if ((school - arr[j] - time) < 0) {
+                    continue;
+                } else {
+                    if ((school - arr[j] - time) < (school - arr[min] - time)) {
+                        min = j;
+                    }
                 }
-                if (t.right != null) {
-                    q.offer(t.right);
-                }
-                count--;
+
             }
-            list.add(in);
+            System.out.println(arr[min] / 60 + " " + arr[min] % 60);
         }
-        return list;
     }
 }
-
