@@ -1,43 +1,43 @@
 package Solution1;
 
-import java.util.Scanner;
+
 import java.util.*;
 
 public class Main {
     public static void main(String[] args){
-        Scanner sca=new Scanner(System.in);
-        int n=sca.nextInt();
-        int[] x1=new int[n];
-        int[] y1=new int[n];
-        int[] x2=new int[n];
-        int[] y2=new int[n];
+        Scanner s=new Scanner(System.in);
+        int n=s.nextInt();
+        int w=s.nextInt();
+        int[] arr=new int[n];
         for(int i=0;i<n;i++){
-            x1[i]=sca.nextInt();
+            arr[i]=s.nextInt();
         }
+        long sum=0;
         for(int i=0;i<n;i++){
-            y1[i]=sca.nextInt();
+            sum+=arr[i];
         }
-        for(int i=0;i<n;i++){
-            x2[i]=sca.nextInt();
+        if(sum<=w){
+            System.out.println((int)Math.pow(2,n));
+            return ;
+        }else{
+            System.out.println(loop(arr,n-1,w));
         }
-        for(int i=0;i<n;i++){
-            y2[i]=sca.nextInt();
-        }
-        int ans = 0;
-        int cnt = 0;
-        for (int x : x1) {
-            for (int y : y1) {
-                for (int i = 0; i < n; i++) {
-                    if (x >= x1[i] && x < x2[i] && y >= y1[i] && y < y2[i]) {
-                        cnt++;
-                    }
-                }
-                if (cnt > ans) {
-                    ans = cnt;
-                }
-                cnt = 0;
+    }
+    private static int loop(int[] arr,int i,int w){
+        if(i==0){
+            if(w>=arr[0]){
+                return 2;
+            }else{
+                return 1;
             }
         }
-        System.out.println(ans);
+        if(w<=0){
+            return 1;
+        }
+        if(w-arr[i]>=0){
+            return loop(arr,i-1,w)+loop(arr,i-1,w-arr[i]);
+        }else{
+            return loop(arr,i-1,w);
+        }
     }
 }
