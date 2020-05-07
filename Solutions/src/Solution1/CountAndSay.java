@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-
-public class Main {
+class C {
     public static void main(String[] args) {
         Scanner sca = new Scanner(System.in);
         while (sca.hasNext()) {
