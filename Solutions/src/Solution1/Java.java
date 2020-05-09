@@ -3,28 +3,16 @@ package Solution1;
 import java.util.Scanner;
 
 public class Java {
-    public static void main(String[] args){
-        Scanner sca=new Scanner(System.in);
-        int n=sca.nextInt();
-        int k=sca.nextInt();
-        int[] arr=new int[n];
-        for(int i=0;i<n;i++){
-            arr[i]=sca.nextInt();
+    public int run(TreeNode root) {
+        if(root==null){
+            return 0;
         }
-        int left=0;
-        int right=n-1;
-        while(left<right){
-            if((arr[left]+arr[right])<k){
-                left++;
-            }else if((arr[left]+arr[right])==k){
-                if(left==0 || arr[left]!=arr[left-1] || right==n-1){
-                    System.out.println(arr[left]+" " +arr[right]);
-                }
-                left++;
-                right--;
-            }else{
-                right--;
-            }
+        int l= run(root.left);
+        int r= run(root.right);
+        if(l==0 || r==0){
+            return l+r+1;
         }
+        return Math.min(l,r)+1;
     }
+
 }
