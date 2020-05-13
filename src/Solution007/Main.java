@@ -7,23 +7,25 @@ public class Main {
     public static void main(String[] args){
         Scanner s=new Scanner(System.in);
         int n=s.nextInt();
-        int[] arrn=new int[n];
-        int a=0;
+        if(n<3){
+            System.out.println();
+            return ;
+        }
+        int k=s.nextInt();
+        int[] arr=new int[n];
         for(int i=0;i<n;i++){
-            arrn[i]=a+s.nextInt();
-            a=arrn[i];
+            arr[i]=s.nextInt();
         }
-        int m=s.nextInt();
-        int[] arrm=new int[m];
-        for(int j=0;j<m;j++){
-            arrm[j]=s.nextInt();
-        }
-        for (int i = 0; i < m; i++) {
-            int index = Arrays.binarySearch(arrn, arrm[i]);
-            if (index>0) {
-                System.out.println(index+1);
-            }else{
-                System.out.println(-index);
+        int left=0, mid=left+1, right=n-1;
+        for(;left<right;left++){
+            for(mid=left+1;mid<right;mid++){
+                if(mid<right && arr[left]+arr[mid]+arr[right]<k){
+                    mid++;
+                }else if(mid<right && arr[left]+arr[mid]+arr[right]>k){
+                    right--;
+                }else if(mid<right && arr[left]+arr[mid]+arr[right]==k){
+                    System.out.println(arr[left]+" "+arr[mid]+" "+arr[right]);
+                }
             }
         }
     }
