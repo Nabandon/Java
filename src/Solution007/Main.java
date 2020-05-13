@@ -4,29 +4,39 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
-        Scanner s=new Scanner(System.in);
-        int n=s.nextInt();
-        if(n<3){
-            System.out.println();
-            return ;
+    class Point{
+        int x;
+        int y;
+        Point(int a, int b) {
+            x = a; y = b;
         }
-        int k=s.nextInt();
-        int[] arr=new int[n];
-        for(int i=0;i<n;i++){
-            arr[i]=s.nextInt();
+    }
+    public int maxPoints(Point[] points) {
+        if(points.length<=2){
+            return points.length;
         }
-        int left=0, mid=left+1, right=n-1;
-        for(;left<right;left++){
-            for(mid=left+1;mid<right;mid++){
-                if(mid<right && arr[left]+arr[mid]+arr[right]<k){
-                    mid++;
-                }else if(mid<right && arr[left]+arr[mid]+arr[right]>k){
-                    right--;
-                }else if(mid<right && arr[left]+arr[mid]+arr[right]==k){
-                    System.out.println(arr[left]+" "+arr[mid]+" "+arr[right]);
+        int res=0;
+        for(int i=1;i<points.length;i++){
+            int count=0;
+            long a=points[i].x;
+            long b=points[i].y;
+            long dx=a-points[i-1].x;
+            long dy=b-points[i-1].y;
+            if(dx==0 && dy==0){
+                for(int j=0;j<points.length;j++){
+                    if(points[j].x==a && points[j].y==b){
+                        count++;
+                    }
+                }
+            }else{
+                for(int j=0;j<points.length;j++){
+                    if((points[j].x-a)*dy==(points[j].y-b)*dx){
+                        count++;
+                    }
                 }
             }
+            res=Math.max(res,count);
         }
+        return res;
     }
 }
