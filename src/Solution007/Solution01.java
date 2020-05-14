@@ -3,31 +3,23 @@ package Solution007;
 import java.util.Stack;
 
 public class Solution01 {
-    public static void main(String[] args) {
-        String[] s={"5","2","C","D","+"};
-        System.out.println(calPoints(s));
-    }
-    public static int calPoints(String[] ops) {
-        Stack<Integer> stack=new Stack<>();
-        for(String s:ops){
-            if(s.equals("+")){
-                int num=stack.pop();
-                int num3=(num+stack.peek());
-                stack.push(num);
-                stack.push(num3);
-            }else if(s.equals("D")){
-                stack.push(stack.peek()*2);
-            }else if(s.equals("C")){
-                stack.pop();
+    public ListNode insertionSortList(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode cur=new ListNode(0);
+        ListNode t=head;
 
-            }else{
-                stack.push(Integer.parseInt(s));
+        while(t!=null){
+            ListNode tNext=t.next;
+            ListNode pre=cur;
+            while(pre.next!=null && pre.next.val<t.val){
+                pre=pre.next;
             }
+            t.next=pre.next;
+            pre.next=t;
+            t=tNext;
         }
-        int i=0;
-        while(!stack.isEmpty()){
-            i+=stack.pop();
-        }
-        return i;
+        return  cur.next;
     }
 }
