@@ -11,7 +11,9 @@ public class Exe {
     //先序遍历;
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res=new ArrayList<>();
-        if(root==null) return  res;
+        if(root==null) {
+            return  res;
+        }
         Stack<TreeNode> stack=new Stack<>();
         stack.push(root);
         while(!stack.isEmpty()){
@@ -48,12 +50,12 @@ public class Exe {
     }
     //后序遍历;
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> res=new ArrayList<>();
-        if(root==null) return res;
-        Stack<TreeNode> stack=new Stack<>();
-        TreeNode pre=root;
-        TreeNode top=null;
-        while(true){
+            List<Integer> res=new ArrayList<>();
+            if(root==null) return res;
+            Stack<TreeNode> stack=new Stack<>();
+            TreeNode pre=root;
+            TreeNode top=null;
+            while(true){
             while (pre!=null){
                 stack.push(pre);
                 pre=pre.left;

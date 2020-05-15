@@ -35,7 +35,6 @@ public class Sort {
         int mid=beg+(end-beg)/2;
         mergeSortIntr(arr,beg,mid);
         mergeSortIntr(arr,mid,end);
-
         merge(arr,beg,mid,end);
     }
     private  void merge(int[]arr,int beg,int mid,int end ){
@@ -43,12 +42,13 @@ public class Sort {
        int index=0;
        int cur1=beg;
        int cur2=mid;
-       while(cur1<mid && cur2<end){
-           if(arr[cur1]<=arr[cur2]){
-               input[index++]=arr[cur1++];
-           }else{
-               input[index++]=arr[cur2++];
+       while(cur1<mid && cur2<end) {
+           if (arr[cur1] <= arr[cur2]) {
+               input[index++] = arr[cur1++];
+           } else {
+               input[index++] = arr[cur2++];
            }
+       }
            while(cur1<mid){
                input[index++]=arr[cur1++];
            }
@@ -58,7 +58,7 @@ public class Sort {
            for(int i=0;i<end-beg;i++){
                arr[beg+i]=input[i];
            }
-       }
+
     }
     //快速排序;
     public void quickSort(int[] arr){
@@ -118,18 +118,17 @@ public class Sort {
     //希尔排序;
     public void shellSort(int[] arr){
         int gap=arr.length/2;//gap=size/2 , size/4,...
-        while(gap>1){    // 循环进行分组插排
+        while(gap>0){    // 循环进行分组插排
             inertionSortGap(arr,gap);
             gap/=2;
         }
-        inertionSortGap(arr,1);//gap=1时就是插排了;
     }
     private void inertionSortGap(int[] arr,int gap){
-        for(int boud=gap;gap<arr.length;gap++){
+        for(int boud=gap;boud<arr.length;boud++){
             int cur=boud-gap;
             int n=arr[boud];
             for(;cur>=0;cur-=gap){
-                if(arr[cur]>arr[cur+gap]){
+                if(arr[cur]>n){
                     arr[cur+gap]=arr[cur];
                 }else{
                     break;
