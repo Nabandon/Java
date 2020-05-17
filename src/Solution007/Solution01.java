@@ -1,33 +1,30 @@
 package Solution007;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class Solution01 {
-    public void reorderList(ListNode head) {
-        if(head==null || head.next==null){
-            return;
+
+    public int candy(int[] ratings) {
+        int n=ratings.length;
+        if(n==0 || ratings==null){
+            return 0;
         }
-        ListNode slow=head;
-        ListNode fast=head;
-        while(fast.next!=null && fast.next.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
+        int[] t=new int[n];
+        Arrays.fill(t,1);
+        for(int i=1;i<n;i++){
+            if(ratings[i]>ratings[i-1]){
+                t[i]=t[i-1]+1;
+            }
         }
-        ListNode end=null;
-        while(slow!=null){
-            ListNode t=slow.next;
-            slow.next=end;
-            end=slow;
-            slow=t;
+        int sum=0;
+        for(int i=n-1;i>0;i--){
+            sum+=t[i];
+            if(ratings[i]<ratings[i-1] && t[i]>=t[i-1]){
+                t[i-1]=t[i]+1;
+            }
         }
-        ListNode first=head;
-        while(end!=null && first!=null){
-            ListNode q=first.next;
-            ListNode h=end.next;
-            first.next=end;
-            first=q;
-            end.next=q;
-            end=h;
-        }
+        sum+=t[0];
+        return sum;
     }
 }
