@@ -1,28 +1,27 @@
 package Solution007;
 
 
+
 import java.util.HashMap;
 import java.util.Map;
 
 public  class Ex {
-    public RandomListNode copyRandomList(RandomListNode head) {
-        if(head==null){
-            return null;
+    public int sumNumbers (TreeNode root) {
+        // write code here
+        int res=0;
+        if(root==null){
+            return res;
         }
-        Map<RandomListNode,RandomListNode> map=new HashMap<>();
-        RandomListNode colne=head;
-        RandomListNode n=colne;
-        while(n!=null){
-            RandomListNode c=new RandomListNode(n.label);
-            map.put(n,c);
-            n=n.next;
+        return sum(root,res);
+    }
+    private int sum(TreeNode root, int res){
+        if(root==null){
+            return 0;
         }
-        n=colne;
-        while(n!=null){
-            map.get(n).next=map.get(n.next);
-            map.get(n).random=map.get(n.random);
-            n=n.next;
+        res=res*10+root.val;
+        if(root.left==null && root.right==null){
+            return res;
         }
-        return colne;
+        return sum(root.left,res)+sum(root.right,res);
     }
 }
