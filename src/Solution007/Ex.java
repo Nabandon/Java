@@ -2,34 +2,31 @@ package Solution007;
 
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
 public  class Ex {
 
-    public int maxProfit1 (int[] prices) {
+    public ArrayList<Integer> getRow (int rowIndex) {
 
-        int res=0;
-        for(int i=1;i<prices.length;i++){
-            if(prices[i]>prices[i-1]){
-                res+=(prices[i]-prices[i-1]);
+        ArrayList<Integer> list=new ArrayList<>();
+        if(rowIndex<0) {
+            return list;
+        }
+
+        list.add(1);
+        for(int i=0;i<rowIndex;i++){
+
+            for(int j=i;j>0;j--){
+
+                int pre=list.get(j-1);
+                int cur=list.get(j);
+                list.set(j,pre+cur);
             }
+            list.add(1);
         }
-        return res;
-    }
-
-    public int maxProfit2 (int[] prices) {
-
-        if(prices.length<=1){
-            return 0;
-        }
-        int max=0;
-        int min=prices[0];
-        for(int i=1;i<prices.length;i++){
-            min=Math.min(min,prices[i]);
-            max=Math.max(max,prices[i]-min);
-        }
-        return max;
+        return list;
     }
 }
