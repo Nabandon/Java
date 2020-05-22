@@ -7,33 +7,28 @@ import java.util.HashSet;
 import java.util.Map;
 
 public  class Ex {
-    public int longestConsecutive (int[] num) {
-        // write code here
-        int len=num.length;
-        if(len<=1){
-            return len;
-        }
-        int max=1;
-        HashSet<Integer> set=new HashSet<>();
-        for(int n:num){
-            set.add(n);
-        }
-        for(int n:num){
-            int t=1;
-            if(set.remove(n)){
 
-                int samll=n-1;
-                int big=n+1;
-                while(set.remove(samll)){
-                    t++;
-                    samll--;
-                }
-                while(set.remove(big)){
-                    t++;
-                    big++;
-                }
+    public int maxProfit1 (int[] prices) {
+
+        int res=0;
+        for(int i=1;i<prices.length;i++){
+            if(prices[i]>prices[i-1]){
+                res+=(prices[i]-prices[i-1]);
             }
-            max=Math.max(max,t);
+        }
+        return res;
+    }
+
+    public int maxProfit2 (int[] prices) {
+
+        if(prices.length<=1){
+            return 0;
+        }
+        int max=0;
+        int min=prices[0];
+        for(int i=1;i<prices.length;i++){
+            min=Math.min(min,prices[i]);
+            max=Math.max(max,prices[i]-min);
         }
         return max;
     }
