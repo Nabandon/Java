@@ -2,31 +2,36 @@ package Solution007;
 
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-
+import java.util.*;
+ class TreeLinkNode {
+     int val;
+     TreeLinkNode left, right, next;
+      TreeLinkNode(int x) { val = x; }
+  }
 public  class Ex {
 
-    public ArrayList<Integer> getRow (int rowIndex) {
-
-        ArrayList<Integer> list=new ArrayList<>();
-        if(rowIndex<0) {
-            return list;
+    public void connect(TreeLinkNode root) {
+        if(root==null){
+            return ;
         }
-
-        list.add(1);
-        for(int i=0;i<rowIndex;i++){
-
-            for(int j=i;j>0;j--){
-
-                int pre=list.get(j-1);
-                int cur=list.get(j);
-                list.set(j,pre+cur);
+        Queue<TreeLinkNode> q=new LinkedList<>();
+        q.offer(root);
+        int size=q.size();
+        while(!q.isEmpty()){
+            TreeLinkNode node=q.poll();
+            size--;
+            if(node.left!=null){
+                q.offer(node.left);
             }
-            list.add(1);
+            if(node.right!=null){
+                q.offer(node.right);
+            }
+            if(size==0){
+                node.next=null;
+                size=q.size();
+            }else{
+                node.next=q.peek();
+            }
         }
-        return list;
     }
 }
