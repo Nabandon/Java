@@ -11,31 +11,16 @@ class TreeNode{
     }
 }
 public class TreeNodeTest {
-    public ArrayList<ArrayList<Integer>> pathSum (TreeNode root, int sum) {
-        // write code here
-        ArrayList<ArrayList<Integer>> res=new ArrayList<>();
+    public boolean hasPathSum (TreeNode root, int sum) {
+
         if(root==null){
-            return res;
+            return false;
         }
-        ArrayList<Integer> list=new ArrayList<>();
-        helper(res,list,root,sum);
-        return res;
-    }
-    private void helper(ArrayList<ArrayList<Integer>> res,ArrayList<Integer> list,TreeNode root,int sum){
-        if(root==null){
-            return ;
-        }
-        list.add(root.val);
         if(root.left==null && root.right==null && root.val==sum){
-            res.add(new ArrayList(list));
+            return true;
         }
-        if(root.left!=null){
-            helper(res,list,root.left,sum-root.val);
-            list.remove(list.size()-1);
-        }
-        if(root.right!=null){
-            helper(res,list,root.right,sum-root.val);
-            list.remove(list.size()-1);
-        }
+        boolean l= hasPathSum(root.left,sum-root.val);
+        boolean r= hasPathSum(root.right,sum-root.val);
+        return l||r;
     }
 }
