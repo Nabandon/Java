@@ -7,42 +7,33 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        String A=sc.next();
-        String B=sc.next();
-        int num=help(A,B);
-        System.out.println(num);
-    }
-    private static int help(String a,String b){
-        ArrayList<Character> list=new ArrayList<>();
-        int lena=a.length();
-        int lenb=b.length();
-        int num=0;
-        for(int i=0;i<=lena;i++){
-            list.clear();
-            for(int k=0;k<lena;k++){
-                list.add(a.charAt(k));
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+
+       StringBuilder s2=new StringBuilder();
+        int i=0;
+        int index=0;
+        while(index<str.length()){
+            int k=0;
+            StringBuilder s1=new StringBuilder();
+            if(index<str.length()&&str.charAt(index)<='9' && str.charAt(index)>='0') {
+                while (index<str.length()&&str.charAt(index) <= '9' && str.charAt(index) >= '0') {
+                    k++;
+                    s1.append(str.charAt(index));
+                    index++;
+                }
             }
-            for(int j=b.length()-1;j>=0;j--){
-                list.add(i,b.charAt(j));
+            if(k>i){
+                i=k;
+               s2=new StringBuilder();
+               s2.append(s1);
+
             }
-            if(palindrome(list,lena+lenb)){
-                num++;
-            }
+
+            index++;
         }
-        return num;
-    }
-    private static boolean palindrome(ArrayList list,int len){
-        int left=0;
-        int right=len-1;
-        while(left<=right){
-            if(!list.get(left).equals(list.get(right))){
-                return false;
-            }
-            left++;
-            right--;
-        }
-        return true;
+
+        System.out.println(s2.toString());
     }
 }
 
