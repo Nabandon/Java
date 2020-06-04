@@ -3,34 +3,25 @@ package Solution007;
 
 
 import java.util.*;
- class TreeLinkNode {
-     int val;
-     TreeLinkNode left, right, next;
-      TreeLinkNode(int x) { val = x; }
-  }
-public  class Ex {
 
-    public void connect(TreeLinkNode root) {
-        if(root==null){
-            return ;
-        }
-        Queue<TreeLinkNode> q=new LinkedList<>();
-        q.offer(root);
-        int size=q.size();
-        while(!q.isEmpty()){
-            TreeLinkNode node=q.poll();
-            size--;
-            if(node.left!=null){
-                q.offer(node.left);
+public  class Ex {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        while(s.hasNext()){
+            int n=s.nextInt();
+            int res=0;
+            while(n>0){
+                if(n%8==0){
+                    System.out.println(res+n/8);
+                }else {
+                    res++;
+                    n-=6;
+                }
             }
-            if(node.right!=null){
-                q.offer(node.right);
-            }
-            if(size==0){
-                node.next=null;
-                size=q.size();
-            }else{
-                node.next=q.peek();
+            if(n==0){
+                System.out.println(res);
+            }else {
+                System.out.println(-1);
             }
         }
     }
