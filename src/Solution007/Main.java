@@ -8,34 +8,33 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
-        Scanner sca=new Scanner(System.in);
-        int[] arr=new int[4];
-        String str=sca.nextLine();
-        String[] s=str.split(" ");
-        for(int i=0;i<4;i++){
-            arr[i]=Integer.parseInt(s[i]);
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        if (nums1.length > nums2.length) {
+            return findMedianSortedArrays(nums2, nums1);
         }
-        if((arr[0]+arr[2])%2!=0){
-            System.out.println("No");
-            return ;
+        int m = nums1.length;
+        int n = nums2.length;
+        int left = 0, right = m, ansi = -1;
+        int median1 = 0, median2 = 0;
+        while (left <= right) {
+            int i = (left + right) / 2;
+            int j = (m + n + 1) / 2 - i;
+
+            int nums_im1 = (i == 0 ? Integer.MIN_VALUE : nums1[i - 1]);
+            int nums_i = (i == m ? Integer.MAX_VALUE : nums1[i]);
+            int nums_jm1 = (j == 0 ? Integer.MIN_VALUE : nums2[j - 1]);
+            int nums_j = (j == n ? Integer.MAX_VALUE : nums2[j]);
+
+            if (nums_im1 <= nums_j) {
+                ansi = i;
+                median1 = Math.max(nums_im1, nums_jm1);
+                median2 = Math.min(nums_i, nums_j);
+                left = i + 1;
+            } else {
+                right = i - 1;
+            }
         }
-        int a=(arr[0]+arr[2])/2;
-        if(arr[2]-a<0){
-            System.out.println("No");
-            return ;
-        }
-        int b=arr[2]-a;
-        if(b-arr[1]<0){
-            System.out.println("No");
-            return ;
-        }
-        int c=b-arr[1];
-        if((b+c)!=arr[3]){
-            System.out.println("No");
-            return ;
-        }
-        System.out.println(a+" "+b+" "+c);
+        return (m + n) % 2 == 0 ? (median1 + median2) / 2 : median1;
     }
 //    public static void main(String[] args){
 //        Scanner sc=new Scanner(System.in);
