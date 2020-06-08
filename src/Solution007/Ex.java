@@ -8,30 +8,27 @@ import java.util.Scanner;
 
 public class Ex {
 
-static int i=0;
-    public int[] twoSum (int[] numbers, int target) {
-//        // write code here
-//        for(int i=0;i<numbers.length;i++){
-//            for(int j=i+1;j<numbers.length;j++){
-//                if(numbers[i]+numbers[j]==target){
-//                    return new int[]{i+1,j+1};
-//                }
-//            }
-//        }
-//        return null;
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
 
-       // 哈希
-        HashMap<Integer,Integer> map=new HashMap<>();
-        int[] res=new int[2];
-        for(int i=0;i<numbers.length;i++){
-            if(map.containsKey(numbers[i])){
-                res[0]=map.get(numbers[i])+1;
-                res[1]=i+1;
-                break;
-            }else{
-                map.put(target-numbers[i],i);
+        String[] str=sc.nextLine().split(" ");
+        int w=Integer.parseInt(str[0]);
+        int h=Integer.parseInt(str[1]);
+        int count=0;
+        int[][] arr=new int[w][h];
+        for(int i=0;i<w;i++){
+            for(int j=0;j<h;j++){
+                if(arr[i][j]==0){
+                    count++;
+                    if(i+2<w){
+                        arr[i+2][j]=-1;
+                    }
+                    if(j+2<h){
+                        arr[i][j+2]=-1;
+                    }
+                }
             }
         }
-        return res;
+        System.out.println(count);
     }
 }
