@@ -5,37 +5,58 @@ import jdk.internal.org.objectweb.asm.tree.MultiANewArrayInsnNode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        if (nums1.length > nums2.length) {
-            return findMedianSortedArrays(nums2, nums1);
-        }
-        int m = nums1.length;
-        int n = nums2.length;
-        int left = 0, right = m, ansi = -1;
-        int median1 = 0, median2 = 0;
-        while (left <= right) {
-            int i = (left + right) / 2;
-            int j = (m + n + 1) / 2 - i;
-
-            int nums_im1 = (i == 0 ? Integer.MIN_VALUE : nums1[i - 1]);
-            int nums_i = (i == m ? Integer.MAX_VALUE : nums1[i]);
-            int nums_jm1 = (j == 0 ? Integer.MIN_VALUE : nums2[j - 1]);
-            int nums_j = (j == n ? Integer.MAX_VALUE : nums2[j]);
-
-            if (nums_im1 <= nums_j) {
-                ansi = i;
-                median1 = Math.max(nums_im1, nums_jm1);
-                median2 = Math.min(nums_i, nums_j);
-                left = i + 1;
-            } else {
-                right = i - 1;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            int n = sc.nextInt();
+            if (n > 1000) {
+                n = 999;
             }
+            List<Integer> list = new ArrayList<Integer>();
+            for (int i = 0; i < n; i++) {
+                list.add(i);
+            }
+            int i = 0;
+            while (list.size() > 1) {
+                i = (i + 2) % list.size();
+                list.remove(i);
+            }
+            System.out.println(list.get(0));
         }
-        return (m + n) % 2 == 0 ? (median1 + median2) / 2 : median1;
     }
+
+//    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+//        if (nums1.length > nums2.length) {
+//            return findMedianSortedArrays(nums2, nums1);
+//        }
+//        int m = nums1.length;
+//        int n = nums2.length;
+//        int left = 0, right = m  ;
+//        int median1 = 0, median2 = 0;
+//        while (left <= right) {
+//            int i = (left + right) / 2;
+//            int j = (m + n + 1) / 2 - i;
+//
+//            int nums_im1 = (i == 0 ? Integer.MIN_VALUE : nums1[i - 1]);
+//            int nums_i = (i == m ? Integer.MAX_VALUE : nums1[i]);
+//            int nums_jm1 = (j == 0 ? Integer.MIN_VALUE : nums2[j - 1]);
+//            int nums_j = (j == n ? Integer.MAX_VALUE : nums2[j]);
+//
+//            if (nums_im1 <= nums_j) {
+//
+//                median1 = Math.max(nums_im1, nums_jm1);
+//                median2 = Math.min(nums_i, nums_j);
+//                left = i + 1;
+//            } else {
+//                right = i - 1;
+//            }
+//        }
+//        return (m + n) % 2 == 0 ? (median1 + median2) / 2.0 : median1;
+//    }
 //    public static void main(String[] args){
 //        Scanner sc=new Scanner(System.in);
 //        int n=sc.nextInt();
