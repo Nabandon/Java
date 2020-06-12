@@ -1,34 +1,24 @@
 package Solution007;
 
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.io.File;
+import java.util.ArrayList;
 
 public class Ex {
 
-    public static void main(String[] args){
-        Scanner sc=new Scanner(System.in);
 
-        String[] str=sc.nextLine().split(" ");
-        int w=Integer.parseInt(str[0]);
-        int h=Integer.parseInt(str[1]);
-        int count=0;
-        int[][] arr=new int[w][h];
-        for(int i=0;i<w;i++){
-            for(int j=0;j<h;j++){
-                if(arr[i][j]==0){
-                    count++;
-                    if(i+2<w){
-                        arr[i+2][j]=-1;
-                    }
-                    if(j+2<h){
-                        arr[i][j+2]=-1;
-                    }
-                }
+    public int[] multiply(int[] A) {
+        int[] b=new int[A.length];
+        ArrayList<Integer> list=new ArrayList<>();
+        list.add(1);
+        for(int i=0;i<A.length;i++){
+            list.add(list.get(i)*A[i]);
+            int res=list.get(i);
+            for(int j=i+1;j<A.length;j++){
+                res*=A[j];
             }
+            b[i]=res;
         }
-        System.out.println(count);
+        return b;
     }
 }
