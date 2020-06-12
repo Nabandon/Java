@@ -4,17 +4,26 @@ package Solution007;
 import java.util.Scanner;
 
 public class Main {
-    public int countWays(int x, int y) {
-        // write code here
-        if(x<=0 || y<=0 || x==1 && y==1){
-            return 0;
+    public static void main(String[] args){
+        Scanner sca=new Scanner(System.in);
+        while(sca.hasNext()){
+            String s=sca.nextLine();
+            int[] arr=new int[10];
+            for(int i=0;i<s.length();i++){
+
+                arr[Integer.parseInt(s.charAt(i)+"")]++;
+            }
+            for(int j=0;j<arr.length;j++){
+                if(arr[j]!=0){
+                    System.out.println(j+":"+arr[j]);
+                }
+            }
+
         }
-        if(x==1 || y==1){
-            return 1;
-        }
-        return countWays(x-1,y)+countWays(x,y-1);
+
     }
-    }
+
+}
 
 
 
