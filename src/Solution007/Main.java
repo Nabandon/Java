@@ -4,23 +4,26 @@ package Solution007;
 import java.util.Scanner;
 
 public class Main {
-    public String[] getGray(int n) {
-        // write code here
-        String[] str=null;
-        if(n==1){
-            str= new String[]{"0","1"};
-        }else{
-            String[] res=getGray(n-1);
-            str=new String[res.length*2];
-            for(int i=0;i<res.length;i++){
-                str[i]="0"+res[i];
-                str[str.length-1-i]="1"+res[i];
-            }
-
+    public static void main(String[] args){
+        Scanner sca=new Scanner(System.in);
+        int n=sca.nextInt();
+        if(n<=0){
+            return ;
         }
-        return str;
+        int m=sca.nextInt();
+        int k=m;
+        for(int i=1;i<n;i++){
+            if(k<=0){
+                k=sca.nextInt();
+            }else{
+                k+=sca.nextInt();
+            }
+            if(k>m){
+                m=k;
+            }
+        }
+        System.out.println(m);
     }
-
 }
 
 
