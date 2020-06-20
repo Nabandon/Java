@@ -4,41 +4,37 @@ package Solution007;
 import java.util.*;
 
 public class Main {
-
-    static ArrayList<String> list=new ArrayList<>();
     public static void main(String[] args){
-        Scanner sca=new Scanner(System.in);
-        while(sca.hasNext()){
-            list.clear();
-            int n=sca.nextInt();
-            int[] arr=new int[n];
-            for(int i=0;i<n;i++){
-                arr[i]=sca.nextInt();
-            }
-            Stack<Integer> stack=new Stack<>();
-            h(arr,stack,"",0,0);
-            Collections.sort(list);
-            for(String s:list){
-                System.out.println(s);
-            }
+        Scanner sc = new Scanner(System.in);
+        int count = sc.nextInt();
+        int[] arr = new int[count];
+        for(int i = 0;i < count;i++){
+            arr[i] = sc.nextInt();
         }
-        sca.close();
+        int[][] res=getIndex(arr);
+        for(int i=0;i<arr.length;i++){
+            System.out.println(res[i][0]+" "+res[i][1]);
+        }
     }
-    private static void h(int[] arr,Stack stack,String str,int j,int c){
-        if(c==arr.length){
-            list.add(str);
-            return;
+    private static int[][] getIndex(int[] arr){
+        Stack<Integer> stack=new Stack<>();
+        int[][] in=new int[arr.length][2];
+        for(int i=0;i<arr.length;i++){
+            while(!stack.isEmpty() && arr[stack.peek()]>arr[i]){
+                int now=stack.pop();
+                int left=stack.isEmpty()?-1:stack.peek();
+                in[now][0]=left;
+                in[now][1]=i;
+            }
+            stack.push(i);
         }
-        if(c<arr.length && !stack.isEmpty()){
-            int t=(int)stack.pop();
-            h(arr,stack,str+t+" ",j,c+1);
-            stack.push(t);
+        while(!stack.isEmpty()){
+            int now=stack.pop();
+            int left=stack.isEmpty()?-1:stack.peek();
+            in[now][0]=left;
+            in[now][1]=-1;
         }
-        if(j<arr.length){
-            stack.push(arr[j]);
-            h(arr,stack,str,j+1,c);
-            stack.pop();
-        }
+        return in;
     }
 }
 
