@@ -1,14 +1,40 @@
-package Test100;
+package src.Test100;
+ class ListNode {
+    int val;
+    ListNode next = null;
 
+    ListNode(int val) {
+        this.val = val;
+    }
+}
 public class Area {
-    public int maxArea(int[] height){
-        int area=0;
-        for(int a=0;a<height.length-1;a++){
-            for(int b=a+1;b<height.length;b++){
-                int min_height=Math.min(height[a],height[b]);
-                area=Math.max(area,Math.min(height[a],height[b])*(b-a));
+    public ListNode partition(ListNode pHead, int x) {
+        // write code here
+        if(pHead==null || pHead.next==null){
+            return pHead;
+        }
+        ListNode qx=new ListNode(0);
+        ListNode dx=new ListNode(0);
+        ListNode pre=qx;
+        ListNode cur=dx;
+        ListNode j=null;
+        while(pHead!=null){
+            if(pHead.val<x){
+                pre.next=new ListNode(pHead.val);
+                j=pre.next;
+                pHead=pHead.next;
+                pre=pre.next;
+            }else{
+                cur.next=new ListNode(pHead.val);
+                pHead=pHead.next;
+                cur=cur.next;
             }
         }
-        return area;
+        if(j!=null){
+            j.next=dx.next;
+            return qx.next;
+        }else{
+            return dx.next;
+        }
     }
 }
