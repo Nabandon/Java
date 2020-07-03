@@ -1,47 +1,49 @@
 package Test90;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+
 class ArrayList {
-    private Object[] data;
-    private int size=1;
 
-    public ArrayList(){
-           Object data = new Object[size];
-    }
-
-    public int size(){
-        return size;
-    }
-
-    public Object get(int x){
-        if(x<0||x>size) return null;
-        return data[x];
-    }
-
-    public void add(Object obj){
-        if(data.length == size){
-            Object[] temp = new Object[size *  2 ];
-            for(int i=0;i<size;i++){
-                temp[i]=data[i];
-            }
-            data = temp;
-            data[size] = obj;
+    public static float count(int n) {
+        //这个函数用来得到有多少种可能，每个人拿不到自己的名字，
+        //也就是得到分子
+        if(n==1){
+            //n=1的时候返回0
+            return 0;
+        }
+        if(n==2){
+            //n=2的时候返回1
+            return 1;
         }else{
-            data[size] = obj;
+            //否则就递归。
+            return (n-1)*(count(n-1)+count(n-2));
         }
-        size++;
+    }
+    //下面的函数用来求阶乘，也是递归，最后得到分母
+    public static float probability(int n){
+        if(n==0){
+            //0的阶乘等于1，不用多说吧
+            return 1;
+        }else{
+            //阶乘表示，进行递归
+            return n*probability(n-1);
+        }
     }
 
-    public void remove(int x) {
-        System.arraycopy(data, x + 1, data, x, size - x - 1);
-        size--;
-    }
-
-    public void remove(Object obj){
-        for(int x = 0;x < size;x++){
-            if(obj.equals(data[x])){
-                remove(x);
-            }
-        }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        do {
+            int n = sc.nextInt();
+            //将得到的分子分母进行相除，就可以得到概率了。
+            float fz=count(n);
+            float fm=probability(n);
+            System.out.println(fm);
+            float result = (fz/fm)*100;
+            System.out.println(String.format("%.2f", result) + "%");
+        } while (sc.hasNext());
     }
 }
 
